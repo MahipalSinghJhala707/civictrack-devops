@@ -94,24 +94,6 @@ Pods --> RDS
 
 ---
 
-## 📂 Repository Structure
-
-```
-.
-├── backend/                # Node.js backend source
-├── docker/                 # Dockerfile
-├── k8s/                    # Kubernetes manifests
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   ├── ingress.yaml
-│   ├── secret.example.yaml
-├── .github/workflows/      # CI/CD pipelines
-│   └── backend-ci-cd.yml
-└── README.md
-```
-
----
-
 ## 🐳 Docker
 
 ### Build
