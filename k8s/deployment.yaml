@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: civictrack-backend
+  namespace: civictrack
+  labels:
+    app: civictrack-backend
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: civictrack-backend
+
+  template:
+    metadata:
+      labels:
+        app: civictrack-backend
+
+    spec:
+      containers:
+        - name: backend
+          image: <ECR_IMAGE_URI>   # updated by CI/CD
+
+          ports:
+            - containerPort: 3000
+
+          env:
+            - name: PORT
+              value: "3000"
+
+          envFrom:
+            - secretRef:
+                name: civictrack-db-secret
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
